@@ -1,4 +1,26 @@
 from random import randint
+import turtle
+
+width = 1000
+height = 750
+
+# Create a canvas instance.
+myturtle = turtle.Turtle()
+# Creating a screen instance to control turtle canvas size.
+screen = turtle.Screen()
+
+screen.setup(width, height)
+
+# Go to a certain coordinate
+myturtle.goto(50, 75)
+
+myturtle.forward(100)
+myturtle.left(90)
+myturtle.forward(200)
+myturtle.left(90)
+myturtle.forward(100)
+myturtle.left(90)
+myturtle.forward(200)
 
 
 class Point:
@@ -42,6 +64,24 @@ class Rectangle:
         print(self.lowleft.x + self.lowleft.y + self.upright.x, self.upright.y)
 
 
+class GuiRectangle(Rectangle):
+    def draw(self, canvas):
+        canvas.forward(100)
+        canvas.left(90)
+        canvas.forward(200)
+        canvas.left(90)
+        canvas.forward(100)
+        canvas.left(90)
+        canvas.forward(200)
+
+
+guirectangle = GuiRectangle(
+    Point(randint(0, 400), randint(0, 400)), Point(randint(10, 400), randint(10, 400))
+)
+
+
+guirectangle.draw(canvas=myturtle)
+
 point1 = Point(10, 20)
 point2 = Point(1, 2)
 # So when we create a Object Instance self is our Object.
@@ -57,12 +97,12 @@ rec.point()
 rec2.point()
 
 rectangle = Rectangle(
-    Point(randint(0, 9), randint(0, 9)), Point(randint(10, 19), randint(10, 19))
+    Point(randint(0, 400), randint(0, 400)), Point(randint(10, 400), randint(10, 400))
 )
 print(
     rectangle.lowleft.x, rectangle.lowleft.y, rectangle.upright.x, rectangle.upright.y
 )
 
-user_point = Point(float(input("Guess X: ")), float(input("Guess Y: ")))
+# user_point = Point(float(input("Guess X: ")), float(input("Guess Y: ")))
 
-print("Your point was inside the rectangle: ", user_point.game(rectangle))
+# print("Your point was inside the rectangle: ", user_point.game(rectangle))
