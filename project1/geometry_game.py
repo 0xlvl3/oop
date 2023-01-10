@@ -1,3 +1,6 @@
+from random import randint
+
+
 class Point:
     # What is self
     # Self in a class is a variable that holds the object instance.
@@ -15,6 +18,15 @@ class Point:
     def falls_in_rectangle(self, numx, numy):
         print("I am ordinary")
         if numx > self.x or numy > self.y:
+            return True
+        else:
+            return False
+
+    def game(self, rectangle):
+        if (
+            rectangle.lowleft.x < self.x < rectangle.upright.x
+            and rectangle.lowleft.y < self.y < rectangle.upright.y
+        ):
             return True
         else:
             return False
@@ -43,3 +55,14 @@ rec = Rectangle(Point(5, 6), Point(8, 9))
 rec2 = Rectangle(Point(100, 100), Point(200, 200))
 rec.point()
 rec2.point()
+
+rectangle = Rectangle(
+    Point(randint(0, 9), randint(0, 9)), Point(randint(10, 19), randint(10, 19))
+)
+print(
+    rectangle.lowleft.x, rectangle.lowleft.y, rectangle.upright.x, rectangle.upright.y
+)
+
+user_point = Point(float(input("Guess X: ")), float(input("Guess Y: ")))
+
+print("Your point was inside the rectangle: ", user_point.game(rectangle))
