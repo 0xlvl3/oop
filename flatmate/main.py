@@ -10,8 +10,8 @@ class Bill:
 
 
 # Test of Bill class
-bill = Bill("test", "test")
-print(f"amount: {bill.amount} period: {bill.period}")
+the_bill = Bill(amount=50, period="test")
+print(f"amount: {the_bill.amount} period: {the_bill.period}")
 
 
 class Flatmate:
@@ -25,11 +25,11 @@ class Flatmate:
         self.days_in_house = days_in_house
 
     def pays(self, bill):
-        print("bill")
+        return the_bill.amount / 2
 
 
 # Testing Flatmate object
-flatmate = Flatmate("Test", 20)
+flatmate = Flatmate(name="Test", days_in_house=20)
 print(f"name: {flatmate.name}, days_in_house: {flatmate.days_in_house}")
 flatmate.pays("test")  # Test of method.
 
@@ -46,3 +46,6 @@ class PdfReport:
 
     def generate(self, flatmate1, flatmate2, bill):
         print("Generate")
+
+
+print(flatmate.pays(bill=the_bill))
