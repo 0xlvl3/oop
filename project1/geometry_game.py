@@ -66,6 +66,7 @@ class Rectangle:
 
 class GuiRectangle(Rectangle):
     def draw(self, canvas):
+
         canvas.forward(100)
         canvas.left(90)
         canvas.forward(200)
