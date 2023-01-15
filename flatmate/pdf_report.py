@@ -1,3 +1,5 @@
+import webbrowser
+import os
 from fpdf import FPDF
 
 
@@ -21,7 +23,7 @@ class PdfReport:
         pdf.add_page()
 
         # Add image.
-        pdf.image("house.png", w=30, h=30)
+        pdf.image("files/house.png", w=30, h=30)
 
         # Insert title.
         pdf.set_font(family="Times", size=24, style="B")
@@ -55,4 +57,7 @@ class PdfReport:
             ln=1,
         )
 
-        pdf.output(self.filename)
+        # Save PDF, then cd to files and open via webbrowser.
+        pdf.output(f"files/{self.filename}")
+        os.chdir("files")
+        webbrowser.open(self.filename)
