@@ -1,6 +1,7 @@
 from bill import Bill
 from flatmate import Flatmate
 from pdf_report import PdfReport
+from file_stack import file_link
 
 # john = Flatmate(name="John", days_in_house=20)
 # mary = Flatmate(name="Mary", days_in_house=25)
@@ -43,3 +44,4 @@ print(user_class.pays(bill=input_bill, flatmate2=friend_class))
 print("We have also created a PDF report for you")
 pdf_report = PdfReport(filename="report.pdf")
 pdf_report.generate(flatmate1=user_class, flatmate2=friend_class, bill=input_bill)
+file_link("report.pdf")
