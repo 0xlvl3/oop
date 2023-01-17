@@ -1,32 +1,44 @@
-# How we define a screen in Kivy.
-<FirstScreen>:
-	# Defining our Grid within our App.
+<CameraScreen>:
 	GridLayout:
-		# cols will be n of cols given to our app.
-		cols: 1
-		# padding is space between widgets and window.
-		padding: 10
-		# spacing is space between widgets.
-		spacing: 10
-		# Image, takes a source and displays it in app.
-		Image:
-			id: img
-			# size_hint_y == how much weight will our Image in this case take up.
-			# size_hint_y must = 1 in total across all widgets
-			size_hint_y: 0.8
-		TextInput:
-			# When we declare a id, we don't use quotes around our string
-			id: user_query
-			text: 'Search for an image here'
-			size_hint_y: 0.1
+		cols: 1		
+		padding: 50
+		spacing: 20
+		Label:
+			id: camera
+			text: "Camera"
 		Button:
-			text: 'Search Image'
-			size_hint_y: 0.1
+			id: start_btn
+			text: "Start"
+			on_press: root.start()
+		Button:
+			on_press: root.capture()
+			text: 'Capture'
+<ImageScreen>:
+	GridLayout:
+		padding: 50
+		cols: 1
+		Label:
+			text: 'X'
+		Button:
+			text: 'Create Sharable Link'
+		Label:
+			text: 'X'
+		# 2 buttons
 
-			# root in this case points to FirstScreen class in Python
-			on_press: root.set_image()
+		GridLayout:
+			spacing: 100
+			cols: 2 
+			Button:
+				text: 'Copy Link'
+			Button:
+				on_press: root.switch()
+				text: 'Go back'
+			
 
 <RootWidget>:
-	FirstScreen:
-		id: first_screen
-		name: 'first_screen'
+	CameraScreen:
+		id: camera_screen
+		name: 'camera_screen'
+	ImageScreen:
+		id: image_screen
+		name: 'image_screen'

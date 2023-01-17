@@ -1,39 +1,29 @@
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager
 from kivy.uix.screenmanager import Screen
-
-import wikipedia
-import requests
-
-
-# This import is how we connect our Python file to Kivy to build our App.
 from kivy.lang import Builder
 
-# Loading our Kivy file to Python.
+from file_stack import file_link
+
 Builder.load_file("frontend.kv")
 
 
-class FirstScreen(Screen):
-    def get_image_link(self):
-        # Get user query from TextInput
-        query = self.manager.current_screen.ids.user_query.text
+class CameraScreen(Screen):
+    def start(self):
+        self.ids.camera.text = "Took a screenshot"
+        self.ids.start_btn.text = "UHHHHHH"
 
-        # Get wikipedia page and get first image link
-        page = wikipedia.page(query)
-        image_link = page.images[0]
-        return image_link
+    def stop(self):
+        self.ids.camera.text = "Capture what? WSL doesn't have access to a camera"
+        self.ids.start_btn.text = "Lol why is this changing now"
 
-    def download_image(self):
-        # Download the image.
-        req = requests.get(self.get_image_link())
-        image_path = "files/image.jpg"
-        with open(image_path, "wb") as file:
-            file.write(req.content)
-        return image_path
+    def capture(self):
+        self.manager.current = "image_screen"
 
-    def set_image(self):
-        # Set image in the Image widget
-        self.manager.current_screen.ids.img.source = self.download_image()
+
+class ImageScreen(Screen):
+    def switch(self):
+        self.manager.current = "camera_screen"
 
 
 class RootWidget(ScreenManager):

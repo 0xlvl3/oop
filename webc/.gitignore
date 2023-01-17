@@ -1,3 +1,3 @@
 files/
-*.jpg
-*.png
+__pycache__/
+
