@@ -1,0 +1,4 @@
+file_stack.py
+*.png
+*.pdf
+__pycache__/
