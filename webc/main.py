@@ -14,14 +14,21 @@ class CameraScreen(Screen):
         self.ids.start_btn.text = "UHHHHHH"
 
     def stop(self):
+        # ids talks about widgets
         self.ids.camera.text = "Capture what? WSL doesn't have access to a camera"
         self.ids.start_btn.text = "Lol why is this changing now"
+        # self.ids.current_screen.ids talks about the current screen attached to that id
+        self.ids.current_screen.ids.img.source = "files/design.txt"
 
     def capture(self):
         self.manager.current = "image_screen"
 
 
 class ImageScreen(Screen):
+    def create_link(self):
+        # Gets current instance of screen
+        # file_path = App.get_running_app().root.ids.camera_screen.filepath
+
     def switch(self):
         self.manager.current = "camera_screen"
 

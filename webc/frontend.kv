@@ -3,6 +3,9 @@
 		cols: 1		
 		padding: 50
 		spacing: 20
+		Image:
+			id: img
+			source: 'files/sun.jpg'
 		Label:
 			id: camera
 			text: "Camera"
@@ -21,6 +24,7 @@
 			text: 'X'
 		Button:
 			text: 'Create Sharable Link'
+			on_press: root.create_link()
 		Label:
 			text: 'X'
 		# 2 buttons
