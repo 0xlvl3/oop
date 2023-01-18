@@ -4,6 +4,7 @@ from wtforms import StringField
 from wtforms import SubmitField
 from flask import Flask
 from flask import render_template
+from flask import request
 
 # How we create our Flask app
 app = Flask(__name__)
@@ -21,7 +22,16 @@ class BillFormPage(MethodView):
 
 
 class ResultsPage(MethodView):
-    pass
+
+    # Notice here we use post instead of get.
+
+    def post(self):
+
+        # Here we get data using Flask request from our BillFormPage widget.
+
+        bill_form = BillForm(request.form)
+        amount = bill_form.amount.data
+        return amount
 
 
 class BillForm(Form):
@@ -37,9 +47,12 @@ class BillForm(Form):
     button = SubmitField("Calculate")
 
 
+# Pages.
+
 # How we add our urls.
 # <insert_class>.as_view.
 app.add_url_rule("/", view_func=HomePage.as_view("home_page"))
 app.add_url_rule("/bill", view_func=BillFormPage.as_view("bill_form_page"))
+app.add_url_rule("/results", view_func=ResultsPage.as_view("results_page"))
 
 app.run()
